@@ -50,6 +50,7 @@
 #ifdef WITH_ECC
 #include "OSSLECDH.h"
 #include "OSSLECDSA.h"
+#include "OSSLMPCECDSA.h"
 #endif
 #ifdef WITH_GOST
 #include "OSSLGOSTR3411.h"
@@ -339,6 +340,8 @@ AsymmetricAlgorithm* OSSLCryptoFactory::getAsymmetricAlgorithm(AsymAlgo::Type al
 			return new OSSLECDH();
 		case AsymAlgo::ECDSA:
 			return new OSSLECDSA();
+		case AsymAlgo::MPCECDSA:
+			return new OSSLMPCECDSA();
 #endif
 #ifdef WITH_GOST
 		case AsymAlgo::GOST:

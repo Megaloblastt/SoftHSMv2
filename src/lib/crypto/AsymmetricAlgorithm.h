@@ -53,7 +53,8 @@ struct AsymAlgo
 		ECDH,
 		ECDSA,
 		GOST,
-		EDDSA
+		EDDSA,
+		MPCECDSA
         };
 };
 
@@ -87,7 +88,8 @@ struct AsymMech
 		ECDSA,
 		GOST,
 		GOST_GOST,
-		EDDSA
+		EDDSA,
+		MPCECDSA,
 	};
 };
 

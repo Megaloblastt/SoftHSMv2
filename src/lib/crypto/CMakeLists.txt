@@ -7,6 +7,24 @@ set(INCLUDE_DIRS ${PROJECT_SOURCE_DIR}
                  ${CRYPTO_INCLUDES}
                  )
 
+if (DEFINED ENV{MPC_LIB_INCLUDE})
+    message(STATUS " MPC_LIB_INCLUDE correctly defined.")
+    list(APPEND INCLUDE_DIRS $ENV{MPC_LIB_INCLUDE})
+    # Search for libuuid
+    find_library(UUID_LIB uuid)
+    # Ensure it's found
+    if (NOT UUID_LIB)
+        message(FATAL_ERROR "libuuid not found")
+    endif()
+
+else()
+    message(FATAL_ERROR "The build expects the include directory of mpc-lib to be defined as the environment variable MPC_LIB_INCLUDE")
+endif()
+
+if (NOT DEFINED ENV{MPC_LIB_BUILD_LIB})
+    message(FATAL_ERROR "The build expects the directory where to find the libcosigner.so library defined as MPC_LIB_BUILD_LIB")
+endif()
+
 set(SOURCES AESKey.cpp
             AsymmetricAlgorithm.cpp
             AsymmetricKeyPair.cpp
@@ -51,6 +69,7 @@ if(WITH_OPENSSL)
                         OSSLDSAPublicKey.cpp
                         OSSLECDH.cpp
                         OSSLECDSA.cpp
+                        OSSLMPCECDSA.cpp
                         OSSLECKeyPair.cpp
                         OSSLECPrivateKey.cpp
                         OSSLECPublicKey.cpp
@@ -139,17 +158,22 @@ ENDIF()
 if(WITH_BOTAN)
 	# mute botan specific warnings
 	# https://github.com/randombit/botan/issues/486
-	list(APPEND COMPILE_OPTIONS "/wd4250;/wd4251;/wd4275;/wd4127;/wd4273") 
+	list(APPEND COMPILE_OPTIONS "/wd4250;/wd4251;/wd4275;/wd4127;/wd4273")
 endif()
 
 include_directories(${INCLUDE_DIRS})
 add_library(${PROJECT_NAME} OBJECT ${SOURCES})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_OPTIONS})
+set_target_properties(${PROJECT_NAME} PROPERTIES
+            CXX_STANDARD 17
+            CXX_STANDARD_REQUIRED ON
+            CXX_EXTENSIONS OFF
+            )
 
 # Versions before CMake 3.12 cannot use target_link_libraries on object
 # libraries, a workaround exists in src/lib/CMakeLists.txt.
 if(NOT CMAKE_VERSION VERSION_LESS "3.12")
-        target_link_libraries(${PROJECT_NAME} ${CRYPTO_LIBS})
+        target_link_libraries(${PROJECT_NAME} ${CRYPTO_LIBS} $ENV{MPC_LIB_BUILD_LIB}/libcosigner.so ${UUID_LIB})
 endif()
 
 if(BUILD_TESTS)

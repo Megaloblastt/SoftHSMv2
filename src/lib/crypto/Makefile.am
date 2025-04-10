@@ -57,6 +57,7 @@ libsofthsm_crypto_la_SOURCES +=	OSSLAES.cpp \
 				OSSLDSAPublicKey.cpp \
 				OSSLECDH.cpp \
 				OSSLECDSA.cpp \
+				OSSLMPCECDSA.cpp \
 				OSSLECKeyPair.cpp \
 				OSSLECPrivateKey.cpp \
 				OSSLECPublicKey.cpp \

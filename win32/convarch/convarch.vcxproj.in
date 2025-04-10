@@ -99,6 +99,7 @@
      <ClInclude Include="..\..\src\lib\crypto\OSSLDSAPublicKey.h" />
      <ClInclude Include="..\..\src\lib\crypto\OSSLECDH.h" />
      <ClInclude Include="..\..\src\lib\crypto\OSSLECDSA.h" />
+     <ClInclude Include="..\..\src\lib\crypto\OSSLMPCECDSA.h" />
      <ClInclude Include="..\..\src\lib\crypto\OSSLECKeyPair.h" />
      <ClInclude Include="..\..\src\lib\crypto\OSSLECPrivateKey.h" />
      <ClInclude Include="..\..\src\lib\crypto\OSSLECPublicKey.h" />
@@ -248,6 +249,7 @@
      <ClCompile Include="..\..\src\lib\crypto\OSSLDSAPublicKey.cpp" />
      <ClCompile Include="..\..\src\lib\crypto\OSSLECDH.cpp" />
      <ClCompile Include="..\..\src\lib\crypto\OSSLECDSA.cpp" />
+     <ClCompile Include="..\..\src\lib\crypto\OSSLMPCECDSA.cpp" />
      <ClCompile Include="..\..\src\lib\crypto\OSSLECKeyPair.cpp" />
      <ClCompile Include="..\..\src\lib\crypto\OSSLECPrivateKey.cpp" />
      <ClCompile Include="..\..\src\lib\crypto\OSSLECPublicKey.cpp" />

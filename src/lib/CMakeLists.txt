@@ -76,7 +76,7 @@ target_compile_options(${PROJECT_NAME}-static PRIVATE ${COMPILE_OPTIONS})
 # Shared Library Config
 ###############################################################################
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${STATIC_FILES})
+target_link_libraries(${PROJECT_NAME} ${STATIC_FILES} $ENV{MPC_LIB_BUILD_LIB}/libcosigner.so ${UUID_LIB})
 generate_export_header(${PROJECT_NAME})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_OPTIONS})
 

@@ -299,6 +299,20 @@ private:
 		CK_BBOOL isPrivateKeyOnToken,
 		CK_BBOOL isPrivateKeyPrivate
 	);
+	CK_RV generateMPCEC
+	(
+		CK_SESSION_HANDLE hSession,
+		CK_ATTRIBUTE_PTR pPublicKeyTemplate,
+		CK_ULONG ulPublicKeyAttributeCount,
+		CK_ATTRIBUTE_PTR pPrivateKeyTemplate,
+		CK_ULONG ulPrivateKeyAttributeCount,
+		CK_OBJECT_HANDLE_PTR phPublicKey,
+		CK_OBJECT_HANDLE_PTR phPrivateKey,
+		CK_BBOOL isPublicKeyOnToken,
+		CK_BBOOL isPublicKeyPrivate,
+		CK_BBOOL isPrivateKeyOnToken,
+		CK_BBOOL isPrivateKeyPrivate
+	);
 	CK_RV generateED
 	(
 		CK_SESSION_HANDLE hSession,
@@ -459,7 +473,7 @@ private:
 	size_t RFC3394Pad(ByteString &keydata);
 	bool RFC5652Unpad(ByteString &keydata, size_t blocksize);
 	bool RFC3394Unpad(ByteString &keydata);
-	
+
 	CK_RV WrapKeySym
 	(
 		CK_MECHANISM_PTR pMechanism,

@@ -793,6 +793,8 @@ typedef unsigned long ck_mechanism_type_t;
 #define CKM_BATON_WRAP			(0x1036UL)
 #define CKM_ECDSA_KEY_PAIR_GEN		(0x1040UL)
 #define CKM_EC_KEY_PAIR_GEN		(0x1040UL)
+#define CKM_MPCECDSA_KEY_PAIR_GEN		(0x103FUL)
+#define CKM_MPCECDSA			          (0x104FUL)
 #define CKM_ECDSA			(0x1041UL)
 #define CKM_ECDSA_SHA1			(0x1042UL)
 #define CKM_ECDSA_SHA224		(0x1043UL)
