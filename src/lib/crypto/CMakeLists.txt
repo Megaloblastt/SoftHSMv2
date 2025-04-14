@@ -21,7 +21,9 @@ else()
     message(FATAL_ERROR "The build expects the include directory of mpc-lib to be defined as the environment variable MPC_LIB_INCLUDE")
 endif()
 
-if (NOT DEFINED ENV{MPC_LIB_BUILD_LIB})
+if (DEFINED ENV{MPC_LIB_BUILD_LIB})
+    list(APPEND INCLUDE_DIRS $ENV{MPC_LIB_BUILD_LIB})
+else()
     message(FATAL_ERROR "The build expects the directory where to find the libcosigner.so library defined as MPC_LIB_BUILD_LIB")
 endif()
 
